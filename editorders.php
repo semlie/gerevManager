@@ -35,7 +35,6 @@
     <body>
 
         <div id="wrapper">
-
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
@@ -219,86 +218,109 @@
                         <h1 class="page-header">עריכת הזמנה</h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                עריכת הזמנה ופרטי מזמין
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <form role="form">
-                                            <div class="form-group">
-                                                <label>OrderId</label>
-                                                <p class="form-control-static">OrderId</p>
-                                                <input type="hidden" class="form-control" name = "OrderId" value="re" >
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Name</label>
-                                                <input class="form-control" name = "CallerName" value="re" >
-                                                <p class="help-block">שם.</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Name</label>
-                                                <input class="form-control" name = "Address" value="Address" >
-                                                <p class="help-block">שם.</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>City</label>
-                                                <input class="form-control" name = "City" value="City" >
-                                                <p class="help-block">שם.</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>TimeStamp</label>
-                                                <input class="form-control" name = "TimeStamp" value="TimeStamp" >
-                                                <p class="help-block">שם.</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>PhoneNumber</label>
-                                                <input class="form-control" name = "PhoneNumber" value="PhoneNumber" >
-                                                <p class="help-block">שם.</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>OtherPhone</label>
-                                                <input class="form-control" name = "OtherPhone" value="OtherPhone" >
-                                                <p class="help-block">שם.</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>OtherPhone</label>
-                                                <input class="form-control" name = "OtherPhone" value="OtherPhone" >
-                                                <p class="help-block">שם.</p>
-                                            </div>
+                    <?php
+                    require_once './managers/web_manager.php';
 
+                    $manager = new web_manager();
+                    $orderId = isset($_GET["orderid"])?$_GET["orderid"]:"";
+                    $func = isset($_GET["func"])?$_GET["func"]:'';
+                    $postOrderAddress = htmlspecialchars($_SERVER["PHP_SELF"])."?func=order&orderid=".$orderId; 
+                    $postCallerAddress = htmlspecialchars($_SERVER["PHP_SELF"])."?func=caller&orderid=".$orderId; 
+                    $data = !empty($orderId) ? $manager->GetOrder($orderId) : "";
+                    var_dump($data);
 
-                                            <div class="form-group">
-                                                <label>הערות</label>
-                                                <textarea name="Notes" class="form-control" rows="3" value="text" ></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>פרטים נוספים</label>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input name="Is_Paid" type="checkbox" value="Is_Paid">האם שולם
-                                                    </label>
+                    if (!empty($_POST)) {
+                        if ($func == "order") {
+                            $manager->UpdateOrder($_POST);
+                        }
+                        if ($func == "caller") {
+                            $manager->UpdateOrder($_POST);
+                        }
+                    } else {
+                        ?>
+
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    עריכת הזמנה ופרטי מזמין
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <form role="form" action="<?php echo $postOrderAddress; ?>" method="POST">
+                                                <div class="form-group">
+                                                    <label>OrderId</label>
+                                                    <p class="form-control-static">OrderId</p>
+                                                    <input type="hidden" class="form-control" name = "OrderId" value="<?php echo $data->OrderId ;?>" >
                                                 </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input name="Is_Delivered" type="checkbox" value="Is_Delivered">האם  נשלח
-                                                    </label>
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input class="form-control" name = "Name" value="<?php echo $data->Name ;?>" >
+                                                    <p class="help-block">שם.</p>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>SUM</label>
-                                                <p class="form-control-static">TotalQuantity</p>
-                                                <p class="form-control-static">TotalPrice</p>
-                                                <p class="form-control-static">TotalItems</p>
-                                            </div>
-                                            <button type="submit" class="btn btn-default">שמירה</button>
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input class="form-control" name = "Address" value="<?php echo $data->Address ;?>" >
+                                                    <p class="help-block">שם.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>City</label>
+                                                    <input class="form-control" name = "City" value="<?php echo $data->City ;?>" >
+                                                    <p class="help-block">שם.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>TimeStamp</label>
+                                                    <input class="form-control" name = "TimeStamp" value="<?php echo $data->TimeStamp ;?>" >
+                                                    <p class="help-block">שם.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>PhoneNumber</label>
+                                                    <input class="form-control" name = "PhoneNumber" value="<?php echo $data->PhoneNumber ;?>" >
+                                                    <p class="help-block">שם.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>OtherPhone</label>
+                                                    <input class="form-control" name = "OtherPhone" value="<?php echo $data->OtherPhone ;?>" >
+                                                    <p class="help-block">שם.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>OtherPhone</label>
+                                                    <input class="form-control" name = "OtherPhone" value="<?php echo $data->OtherPhone ;?>" >
+                                                    <p class="help-block">שם.</p>
+                                                </div>
 
-                                        </form>
+
+                                                <div class="form-group">
+                                                    <label>הערות</label>
+                                                    <textarea name="Notes" class="form-control" rows="3" value="<?php echo $data->Notes ;?>" ></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>פרטים נוספים</label>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input name="Is_Paid" type="checkbox" value="<?php echo $data->Is_Paid ;?>">האם שולם
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input name="Is_Delivered" type="checkbox" value="<?php echo $data->Is_Delivered ;?>">האם  נשלח
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>SUM</label>
+                                                    <p class="form-control-static">TotalQuantity <?php echo $data->TotalQuantity ;?></p>
+                                                    <p class="form-control-static">TotalPrice <?php echo $data->TotalPrice ;?></p>
+                                                    <p class="form-control-static">TotalItems <?php echo $data->TotalItems ;?></p>
+                                                </div>
+                                                <button type="submit" class="btn btn-default">שמירה</button>
+
+                                            </form>
+                                        <?php } ?>
+
                                     </div>
                                     <!-- /.col-lg-6 (nested) -->
                                     <!-- /.col-lg-6 (nested) -->
