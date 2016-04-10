@@ -19,6 +19,9 @@ class caller_manager {
     public function GetPhoneNumbar($callerId) {
         return $this->callerDataService->GetCallerNumberFromCallerId($callerId);
     }
+    public function GetAllCallers() {
+        return $this->callerDataService->GetAll();
+    }
     
     public function GetCallerById($callerItemId) {
         $callerId = $this->_getCallerByCallerItem($callerItemId);
