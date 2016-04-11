@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once realpath(dirname(__FILE__)) . '/../dataServices/caller_dataService.php';
 require_once realpath(dirname(__FILE__)) . '/../dataServices/calleritem_dataService.php';
 require_once realpath(dirname(__FILE__)) . '/../managers/order_manager.php';
