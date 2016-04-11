@@ -1,0 +1,4 @@
+UPDATE ivr_orders.caller SET Name='שמוליק', Address='14117 70th Rd, Flushing, NY 11367', City='??? ???',PhoneNumber='0527146368',
+                    OtherPhone='0777848477', Notes='' WHERE Id='1';
+UPDATE ivr_orders.caller SET Name='שמוליק', Address='14117 70th Rd, Flushing, NY 11367', City='??? ???',PhoneNumber='0527146368',
+                    OtherPhone='0777848477', Notes='' WHERE Id='1';

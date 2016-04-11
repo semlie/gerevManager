@@ -51,14 +51,14 @@ class web_manager {
 
     private function mapCaller($row) {
         $result = new caller;
-        $result->Id = $row['CallerId'];
-        $result->Name = $row['Name'];
-        $result->Address = $row['Address'];
-        $result->City = $row['City'];
-        $result->PhoneNumber = $row['PhoneNumber'];
-        $result->OtherPhone = $row['OtherPhone'];
-        $result->Notes = $row['Notes'];
-        $result->TimeStamp = $row['TimeStamp'];
+        $result->Id = $this->clean($row['CallerId']);
+        $result->Name = $this->clean($row['Name']);
+        $result->Address = $this->clean($row['Address']);
+        $result->City = $this->clean($row['City']);
+        $result->PhoneNumber = $this->clean($row['PhoneNumber']);
+        $result->OtherPhone = $this->clean($row['OtherPhone']);
+        $result->Notes = $this->clean($row['Notes']);
+        $result->TimeStamp = $this->clean($row['TimeStamp']);
 
         return $result;
     }
@@ -102,6 +102,9 @@ class web_manager {
         $model->TotalItems = $row['TotalItems'];
 
         return $model;
+    }
+    private function clean($param) {
+        return mysql_real_escape_string($param);
     }
 
 }
