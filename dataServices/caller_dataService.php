@@ -1,16 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of orderInfo_dataService
- *
- * @author Admin
- */
 require_once realpath(dirname(__FILE__)) . '/data_service.php';
 require_once realpath(dirname(__FILE__)) . '/../models/caller.php';
 require_once realpath(dirname(__FILE__)) . '/../models/sql_model.php';
