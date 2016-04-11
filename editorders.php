@@ -209,7 +209,6 @@ $data = !empty($orderId) ? $manager->GetOrder($orderId) : "";
                                     </div>
                                     <!-- /.col-lg-6 (nested) -->
                                 </div>
-<?php; ?>
                                 <!-- /.row (nested) -->
                             </div>
                             <!-- /.panel-body -->
