@@ -43,7 +43,7 @@ abstract class DataService {
     public function Update(ModelInfo $object) {
         if (is_subclass_of($this, 'sqlModel')) {
             $sql = $this->GetUpdateString($object);
-            $this->saveToFile($sql);
+            saveToFile($sql);
             return $this->InsertionQuery($sql, TRUE);
         }
     }
@@ -77,10 +77,10 @@ abstract class DataService {
         }
     }
 
-    private function saveToFile($text) {
-        $myfile = fopen("looger.txt", "a+") or die("Unable to open file!");
-        fwrite($myfile, $text."\n");
-        fclose($myfile);
-    }
+}
 
+function saveToFile($text) {
+    $myfile = fopen("looger.txt", "a+") or die("Unable to open file!");
+    fwrite($myfile, $text . "\n");
+    fclose($myfile);
 }
