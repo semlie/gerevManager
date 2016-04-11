@@ -24,6 +24,19 @@ class order_manager {
         return $order;
     }
 
+    public function AddNewOrderItem(order_item $orderItem) {
+        //  public function AddNewItemForOrder($callerId, $orderId, $producrId, $quantity) {
+//        $orderItem = new order_item();
+//
+//        $orderItem->CollerId = $callerId;
+//        $orderItem->OrderId = $orderId;
+//        $orderItem->ProductId = $producrId;
+//        $orderItem->Quantity = $quantity;
+
+        $this->orderItemDataService->Add($orderItem);
+        $this->UpdateOrderSum($orderItem->OrderId);
+    }
+
     public function UpdateOrderItem(order_item $orderItem) {
         $this->orderItemDataService->Update($orderItem);
         $this->UpdateOrderSum($orderItem->OrderId);
@@ -41,6 +54,7 @@ class order_manager {
     public function GetOrderItems($orderId) {
         return $this->orderItemDataService->GetAllItemsOfOrderToPrintModel($orderId);
     }
+
     public function GetOrderItem($orderItemId) {
         return $this->orderItemDataService->getById($orderItemId);
     }
@@ -48,7 +62,6 @@ class order_manager {
     public function GetOrderById($orderId) {
         return $this->orderDataService->GetOrderExtendById($orderId);
     }
-
 
     public function getOrderItemTotalPrice($item) {
 

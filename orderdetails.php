@@ -197,6 +197,8 @@ $orderItems = $manager->GetAllOrderItems($orderId);
                                         </tbody>
                                     </table>
                                 </div>
+                                <a href="addorderItems.php?orderid=<?php echo $data->OrderId; ?>" class="btn btn-info" role="button">Add New Item To Order</a>
+
                                 <!-- /.table-responsive -->
                             </div>
                             <!-- /.panel-body -->

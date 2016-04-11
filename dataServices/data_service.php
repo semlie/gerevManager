@@ -49,7 +49,9 @@ abstract class DataService {
 
     private function Query($sql, $isInsert = 0) {
         $conn = mysqli_connect($this->contects->dbhost, $this->contects->dbuser, $this->contects->dbpass, $this->contects->db);
-        // Check connection
+        
+        mysqli_set_charset($conn,"utf8");
+// Check connection
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }

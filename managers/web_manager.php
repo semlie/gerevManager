@@ -2,6 +2,7 @@
 
 require_once realpath(dirname(__FILE__)) . '/caller_manager.php';
 require_once realpath(dirname(__FILE__)) . '/order_manager.php';
+require_once realpath(dirname(__FILE__)) . '/product_manager.php';
 require_once realpath(dirname(__FILE__)) . '/../models/order_item.php';
 require_once realpath(dirname(__FILE__)) . '/../models/order.php';
 require_once realpath(dirname(__FILE__)) . '/../models/caller.php';
@@ -10,11 +11,12 @@ require_once realpath(dirname(__FILE__)) . '/../models/orders_extend_model.php';
 
 class web_manager {
 
-    private $orderManager, $callerManager;
+    private $orderManager, $callerManager,$productManager;
 
     function __construct() {
         $this->orderManager = new order_manager();
         $this->callerManager = new caller_manager();
+        $this->productManager = new product_manager();
     }
 
     //put your code here
@@ -63,6 +65,15 @@ class web_manager {
         return $result;
     }
 
+    public function AddOrderItem($orderItem) {
+        $productCatlogNumber = $orderItem['ProductId'];
+        $product = $this->productManager->GetProductByCatalogNumber($productCatlogNumber);
+        $orderItem['ProductId'] = $product->Id;        
+        $orderItemModel = $this->mapOrderItem($orderItem);
+        $this->orderManager->AddNewOrderItem($orderItemModel);
+        
+    }
+
     public function UpdateOrderItem($orderItem) {
         if (is_array($orderItem)) {
             $orderItemModel = $this->mapOrderItem($orderItem);
@@ -73,11 +84,11 @@ class web_manager {
     private function mapOrderItem($row) {
         $result = new order_item;
         $result->CollerId = $row['CollerId'];
-        $result->Id = $row['OrderItemId'];
+        $result->Id = isset($row['OrderItemId']) ? $row['OrderItemId'] :'';
         $result->OrderId = $row['OrderId'];
         $result->ProductId = $row['ProductId'];
         $result->Quantity = $row['Quantity'];
-        $result->TimeStamp = $row['TimeStamp'];
+        $result->TimeStamp = isset($row['TimeStamp']) ? $row['TimeStamp'] :'';
         return $result;
     }
 
@@ -89,8 +100,8 @@ class web_manager {
     }
 
     private function mapOrder($row) {
-        $row['Is_Paid'] = isset( $row['Is_Paid_new'])?$row['Is_Paid_new']:$row['Is_Paid'];
-        $row['Is_Delivered'] = isset( $row['Is_Delivered_new'])?$row['Is_Delivered_new']:$row['Is_Delivered'];
+        $row['Is_Paid'] = isset($row['Is_Paid_new']) ? $row['Is_Paid_new'] : $row['Is_Paid'];
+        $row['Is_Delivered'] = isset($row['Is_Delivered_new']) ? $row['Is_Delivered_new'] : $row['Is_Delivered'];
         $model = new order;
         $model->Id = $row['OrderId'];
         $model->CallerItemId = $row['CallerItemId'];
@@ -103,6 +114,7 @@ class web_manager {
 
         return $model;
     }
+
     private function clean($param) {
         return mysql_real_escape_string($param);
     }
