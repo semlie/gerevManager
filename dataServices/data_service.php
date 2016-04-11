@@ -43,7 +43,7 @@ abstract class DataService {
     public function Update(ModelInfo $object) {
         if (is_subclass_of($this, 'sqlModel')) {
             $sql = $this->GetUpdateString($object);
-            return $this->InsertionQuery($sql);
+            return $this->InsertionQuery($sql,TRUE);
         }
     }
 

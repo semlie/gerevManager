@@ -50,7 +50,7 @@ class order_manager {
     }
 
 
-    public function getOrderItemTotalPrice(order_item $item) {
+    public function getOrderItemTotalPrice($item) {
 
         $product = $this->productManager->getProbuctById($item->ProductId);
 
@@ -68,13 +68,12 @@ class order_manager {
         $totalItems = count($allItems);
         if ($totalItems > 0) {
             foreach ($allItems as $item) {
-                $result = $this->getOrderItemTotalPrice($item);
 
 //                $product = $this->productManager->getProbuctById($item->ProductId);
 //                $totalPrice = $totalPrice + ($product->Price * $item->Quantity);
 //                $totalQuntity = $totalQuntity + $item->Quantity;
-                $totalPrice = $totalPrice + $result['totalPrice'];
-                $totalQuntity = $totalQuntity + $result['totalQuntity'];
+                $totalPrice = $totalPrice + $item->PriceOrderItem;
+                $totalQuntity = $totalQuntity + $item->Quantity;
             }
         }
         $order->TotalItems = $totalItems;

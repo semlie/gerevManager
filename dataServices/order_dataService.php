@@ -48,6 +48,7 @@ class order_dataService extends DataService implements sqlModel {
     public function mapToExtendModel($row) {
         $model = new orders_extend_model;
         $model->OrderId = $row['OrderId'];
+        $model->CallerId = $row['CallerId'];
         $model->CallerItemId = $row['CallerItemId'];
         $model->TimeStamp = $row['TimeStamp'];
         $model->Is_Delivered = $row['Is_Delivered'];

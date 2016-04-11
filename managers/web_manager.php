@@ -51,7 +51,7 @@ class web_manager {
 
     private function mapCaller($row) {
         $result = new caller;
-        $result->Id = $row['Id'];
+        $result->Id = $row['CallerId'];
         $result->Name = $row['Name'];
         $result->Address = $row['Address'];
         $result->City = $row['City'];
@@ -73,11 +73,12 @@ class web_manager {
     private function mapOrderItem($row) {
         $result = new order_item;
         $result->CollerId = $row['CollerId'];
-        $result->Id = $row['Id'];
+        $result->Id = $row['OrderItemId'];
         $result->OrderId = $row['OrderId'];
         $result->ProductId = $row['ProductId'];
         $result->Quantity = $row['Quantity'];
         $result->TimeStamp = $row['TimeStamp'];
+        return $result;
     }
 
     public function UpdateOrder($order) {
@@ -88,6 +89,8 @@ class web_manager {
     }
 
     private function mapOrder($row) {
+        $row['Is_Paid'] = isset( $row['Is_Paid_new'])?$row['Is_Paid_new']:$row['Is_Paid'];
+        $row['Is_Delivered'] = isset( $row['Is_Delivered_new'])?$row['Is_Delivered_new']:$row['Is_Delivered'];
         $model = new order;
         $model->Id = $row['OrderId'];
         $model->CallerItemId = $row['CallerItemId'];
