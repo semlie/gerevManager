@@ -51,12 +51,12 @@ class caller_dataService extends DataService implements sqlModel {
 
     public function GetUpdateString($caller) {
         $sql = "UPDATE `ivr_orders`.`caller` SET "
-                . "`Name`='" . $caller->Name . "', "
-                . "`Address`='" . $caller->Address . "', "
-                . "`City`='" . $caller->City . "', "
-                . "`PhoneNumber`='" . $caller->PhoneNumber . "', "
-                . "`OtherPhone`='" . $caller->OtherPhone . "', "
-                . "`Notes`='" . $caller->Notes . "' "
+                . "`caller`.`Name`='" . $caller->Name . "', "
+                . "`caller`.`Address`='" . $caller->Address . "', "
+                . "`caller`.`City`='" . $caller->City . "', "
+                . "`caller`.`PhoneNumber`='" . $caller->PhoneNumber . "', "
+                . "`caller`.`OtherPhone`='" . $caller->OtherPhone . "', "
+                . "`caller`.`Notes`='" . $caller->Notes . "' "
                 . "WHERE `caller`.`Id`='" . $caller->Id . "';";
         return $sql;
     }
