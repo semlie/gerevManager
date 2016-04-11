@@ -152,27 +152,6 @@
                                                 
                                             </tr>
                                             <?php }?>
-                                            <tr class="even gradeC">
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 5.0</td>
-                                                <td>Win 95+</td>
-                                                <td class="center">5</td>
-                                                <td class="center">C</td>
-                                            </tr>
-                                            <tr class="odd gradeA">
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 5.5</td>
-                                                <td>Win 95+</td>
-                                                <td class="center">5.5</td>
-                                                <td class="center">A</td>
-                                            </tr>
-                                            <tr class="even gradeA">
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 6</td>
-                                                <td>Win 98+</td>
-                                                <td class="center">6</td>
-                                                <td class="center">A</td>
-                                            </tr>
 
                                         </tbody>
                                     </table>

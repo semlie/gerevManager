@@ -57,7 +57,7 @@ class caller_dataService extends DataService implements sqlModel {
                 . "`PhoneNumber`='" . $caller->PhoneNumber . "', "
                 . "`OtherPhone`='" . $caller->OtherPhone . "', "
                 . "`Notes`='" . $caller->Notes . "' "
-                . "WHERE `Id`='" . $caller->Id . "';";
+                . "WHERE `caller`.`Id`='" . $caller->Id . "';";
         return $sql;
     }
 

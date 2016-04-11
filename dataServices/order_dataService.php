@@ -41,7 +41,7 @@ class order_dataService extends DataService implements sqlModel {
                 . "`TotalQuantity`='" . $order->TotalQuantity . "',"
                 . "`TotalItems`='" . $order->TotalItems . "',"
                 . "`TotalPrice`='" . $order->TotalPrice . "' "
-                . "WHERE `Id` = '" . $order->Id . "'";
+                . "WHERE `orders`.`Id` = '" . $order->Id . "'";
         return $sql;
     }
 
