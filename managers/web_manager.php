@@ -47,6 +47,7 @@ class web_manager {
     public function UpdateCaller($caller) {
         if (is_array($caller)) {
             $callerModel = $this->mapCaller($caller);
+            
             $this->callerManager->UpdateCaller($callerModel);
         }
     }

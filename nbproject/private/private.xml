@@ -3,8 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="אשירה">
+            <file>file:/I:/www/gerevManager/models/sql_model.php</file>
+            <file>file:/I:/www/gerevManager/dataServices/calleritem_dataService.php</file>
+            <file>file:/I:/www/gerevManager/editorderitems.php</file>
             <file>file:/I:/www/gerevManager/editorders.php</file>
+            <file>file:/I:/www/gerevManager/managers/order_manager.php</file>
+            <file>file:/I:/www/gerevManager/tests/test_caller_manager.php</file>
+            <file>file:/I:/www/gerevManager/addorderItems.php</file>
+            <file>file:/I:/www/gerevManager/managers/caller_manager.php</file>
+            <file>file:/I:/www/gerevManager/looger.txt</file>
+            <file>file:/I:/www/gerevManager/dataServices/product_dataService.php</file>
+            <file>file:/I:/www/gerevManager/managers/product_manager.php</file>
+            <file>file:/I:/www/gerevManager/orderdetails.php</file>
+            <file>file:/I:/www/gerevManager/dataServices/data_service.php</file>
+            <file>file:/I:/www/gerevManager/tests/testDB.php</file>
+            <file>file:/I:/www/gerevManager/tests/test_order_manager.php</file>
+            <file>file:/I:/www/gerevManager/dataServices/order_dataService.php</file>
+            <file>file:/I:/www/gerevManager/index.php</file>
+            <file>file:/I:/www/gerevManager/orders.php</file>
             <file>file:/I:/www/gerevManager/managers/web_manager.php</file>
+            <file>file:/I:/www/gerevManager/dataServices/caller_dataService.php</file>
+            <file>file:/I:/www/gerevManager/dataServices/orderItem_dataService.php</file>
         </group>
     </open-files>
 </project-private>

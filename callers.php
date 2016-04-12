@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Orders</title>
+        <title>Callers</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                 <?php
             require_once './managers/web_manager.php';
             $manager = new web_manager();
-            $data = $manager->GetAllOrders();
+            $data = $manager->GetAllCallers();
             ?>
             <!-- Navigation -->
            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -122,10 +122,7 @@
                                                 <th>OtherPhone</th>
                                                 <th>Notes</th>
                                                 <th>Is_Delivered</th>
-                                                <th>Is_Paid</th>
-                                                <th>TotalQuantity</th>
-                                                <th>TotalPrice</th>
-                                                <th>TotalItems</th>
+
                                                 <th>edit</th>
                                             </tr>
                                         </thead>
@@ -134,19 +131,15 @@
                                                             
                                                         ?>
                                             <tr class="odd gradeX">
-                                                <td><a href="orderdetails.php?orderid=<?php echo $value->OrderId ;?>"> <?php echo $value->OrderId ;?></a> </td>
+                                                <!--<td><a href="callersdetails.php?callerid=<?php echo $value->Id ;?>"> <?php echo $value->OrderId ;?></a> </td>-->
                                                 <td><?php echo $value->Name ;?></td>
                                                 <td><?php echo $value->Address ;?></td>
                                                 <td><?php echo $value->City ;?></td>
                                                 <td><?php echo $value->PhoneNumber ;?></td>
                                                 <td><?php echo $value->OtherPhone ;?></td>
                                                 <td><?php echo $value->Notes ;?></td>
-                                                <td><?php echo $value->Is_Delivered ;?></td>
-                                                <td><?php echo $value->Is_Paid ;?></td>
-                                                <td><?php echo $value->TotalQuantity ;?></td>
-                                                <td><?php echo $value->TotalPrice;?></td>
-                                                <td><?php echo $value->TotalItems;?></td>
-                                                <td><a href="editorders.php?orderid=<?php echo $value->OrderId ;?>"> Edit</a> </td>
+
+                                                <td><a href="callersdetails.php?callerid=<?php echo $value->Id ;?>"> Edit</a> </td>
                                                 
                                             </tr>
                                             <?php }?>

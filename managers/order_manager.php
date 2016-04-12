@@ -21,6 +21,7 @@ class order_manager {
 
     public function UpdateOrder(order $order) {
         $this->orderDataService->Update($order);
+        $this->UpdateOrderSum($order->Id);
         return $order;
     }
 
@@ -73,7 +74,7 @@ class order_manager {
         return array('totalPrice' => $totalPrice, 'totalQuntity' => $totalQuntity);
     }
 
-    private function UpdateOrderSum($orderId) {
+    public function UpdateOrderSum($orderId) {
         $order = $this->orderDataService->getById($orderId);
         $allItems = $this->getOrderItems($orderId); // $this->orderItemDataService->GetAllItemsOfOrder($orderId);
         $totalPrice = 0;
