@@ -36,13 +36,19 @@
     <body>
 
         <div id="wrapper">
-                <?php
+            <?php
             require_once './managers/web_manager.php';
             $manager = new web_manager();
             $data = $manager->GetAllOrders();
+
+            function discountPrice($price) {
+                if (intval($price) >= 300) {
+                    return sprintf('<br><b><u>%1$s</u></b>', $price * 0.94);
+                }
+            }
             ?>
             <!-- Navigation -->
-           <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -54,43 +60,46 @@
                 </div>
                 <!-- /.navbar-header -->
 
-                 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">גרביים</a>
-                </div>
-                <!-- /.navbar-header -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">גרביים</a>
+                    </div>
+                    <!-- /.navbar-header -->
 
-                <ul class="nav navbar-top-links navbar-right">
+                    <ul class="nav navbar-top-links navbar-right">
 
-                    <!-- /.dropdown -->
-                 
-                    <!-- /.dropdown -->
-                </ul>
+                        <!-- /.dropdown -->
+
+                        <!-- /.dropdown -->
+                    </ul>
+                    <!-- /.navbar-top-links -->
+
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+
+                                <li>
+                                    <a href="orders.php"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
+                                </li>
+                                <li>
+                                    <a href="callers.php"><i class="fa fa-dashboard fa-fw"></i> Callers</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
                 <!-- /.navbar-top-links -->
 
-                <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav" id="side-menu">
 
-                            <li>
-                                <a href="orders.php"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
-                            </li>
-                           
-                        </ul>
-                    </div>
-                    <!-- /.sidebar-collapse -->
-                </div>
-                <!-- /.navbar-static-side -->
-            </nav>
-     <!-- /.navbar-top-links -->
-
-            
                 <!-- /.navbar-static-side -->
             </nav>
 
@@ -131,25 +140,26 @@
                                         </thead>
                                         <tbody>
                                             <?php foreach ($data as $value) {
-                                                            
-                                                        ?>
-                                            <tr class="odd gradeX">
-                                                <td><a href="orderdetails.php?orderid=<?php echo $value->OrderId ;?>"> <?php echo $value->OrderId ;?></a> </td>
-                                                <td><?php echo $value->Name ;?></td>
-                                                <td><?php echo $value->Address ;?></td>
-                                                <td><?php echo $value->City ;?></td>
-                                                <td><?php echo $value->PhoneNumber ;?></td>
-                                                <td><?php echo $value->OtherPhone ;?></td>
-                                                <td><?php echo $value->Notes ;?></td>
-                                                <td><?php echo $value->Is_Delivered ;?></td>
-                                                <td><?php echo $value->Is_Paid ;?></td>
-                                                <td><?php echo $value->TotalQuantity ;?></td>
-                                                <td><?php echo $value->TotalPrice;?></td>
-                                                <td><?php echo $value->TotalItems;?></td>
-                                                <td><a href="editorders.php?orderid=<?php echo $value->OrderId ;?>"> Edit</a> </td>
-                                                
-                                            </tr>
-                                            <?php }?>
+                                                ?>
+                                                <tr class="odd gradeX">
+                                                    <td><a href="orderdetails.php?orderid=<?php echo $value->OrderId; ?>"> <?php echo $value->OrderId; ?></a> </td>
+                                                    <td><?php echo $value->Name; ?></td>
+                                                    <td><?php echo $value->Address; ?></td>
+                                                    <td><?php echo $value->City; ?></td>
+                                                    <td><?php echo $value->PhoneNumber; ?></td>
+                                                    <td><?php echo $value->OtherPhone; ?></td>
+                                                    <td><?php echo $value->Notes; ?></td>
+                                                    <td><?php echo $value->Is_Delivered; ?></td>
+                                                    <td><?php echo $value->Is_Paid; ?></td>
+                                                    <td><?php echo $value->TotalQuantity; ?></td>
+                                                    <td><?php echo $value->TotalPrice;
+                                                            echo discountPrice($value->TotalPrice)
+                                                ?></td>
+                                                    <td><?php echo $value->TotalItems; ?></td>
+                                                    <td><a href="editorders.php?orderid=<?php echo $value->OrderId; ?>"> Edit</a> </td>
+
+                                                </tr>
+<?php } ?>
 
                                         </tbody>
                                     </table>

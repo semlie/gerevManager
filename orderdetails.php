@@ -6,6 +6,11 @@ $data = !empty($orderId) ? $manager->GetOrder($orderId) : die();
 $counter = 0;
 $orderItems = $manager->GetAllOrderItems($orderId);
 
+function discountPrice($price) {
+    if (intval($price) >= 300) {
+        return sprintf('<br><b><u>%1$s</u></b>', $price * 0.94);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,19 +42,19 @@ $orderItems = $manager->GetAllOrderItems($orderId);
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-<style type="text/css" media="print">
-@page {
-    size: auto;   /* auto is the initial value */
-    margin: 0;  /* this affects the margin in the printer settings */
-}
-</style>
+        <style type="text/css" media="print">
+            @page {
+                size: auto;   /* auto is the initial value */
+                margin: 0;  /* this affects the margin in the printer settings */
+            }
+        </style>
     </head>
 
     <body>
 
         <div id="wrapper">
 
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -126,7 +131,10 @@ $orderItems = $manager->GetAllOrderItems($orderId);
                                                 <td><?php echo $data->PhoneNumber; ?></td>
                                                 <td><?php echo $data->OtherPhone; ?></td>
                                                 <td><?php echo $data->TotalQuantity; ?></td>
-                                                <td><?php echo $data->TotalPrice; ?></td>
+                                                <td><?php
+                                                    echo $data->TotalPrice;
+                                                    echo discountPrice($data->TotalPrice)
+                                                    ?></td>
                                                 <td><?php echo $data->TotalItems; ?></td>
                                                 <td><a href="editorders.php?orderid=<?php echo $data->OrderId; ?>"> Edit</a> </td>
 
@@ -193,7 +201,7 @@ $orderItems = $manager->GetAllOrderItems($orderId);
                                                     <td><a href="editorderitems.php?orderitemid=<?php echo $value->Id; ?>">Edit</a></td>
 
                                                 </tr>
-                                            <?php } ?>
+<?php } ?>
                                         </tbody>
                                     </table>
                                 </div>

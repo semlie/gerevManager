@@ -122,7 +122,7 @@ $data = !empty($orderId) ? $manager->GetOrder($orderId) : "";
                                                 <p class="help-block">שם.</p>
                                             </div>
                                             <div class="form-group">
-                                                <label>Name</label>
+                                                <label>Address</label>
                                                 <input class="form-control" name = "Address" value="<?php echo $data->Address; ?>" >
                                                 <p class="help-block">שם.</p>
                                             </div>
@@ -146,12 +146,6 @@ $data = !empty($orderId) ? $manager->GetOrder($orderId) : "";
                                                 <input class="form-control" name = "OtherPhone" value="<?php echo $data->OtherPhone; ?>" >
                                                 <p class="help-block">שם.</p>
                                             </div>
-                                            <div class="form-group">
-                                                <label>OtherPhone</label>
-                                                <input class="form-control" name = "OtherPhone" value="<?php echo $data->OtherPhone; ?>" >
-                                                <p class="help-block">שם.</p>
-                                            </div>
-
 
                                             <div class="form-group">
                                                 <label>הערות</label>
@@ -175,16 +169,20 @@ $data = !empty($orderId) ? $manager->GetOrder($orderId) : "";
                                                 <label>פרטים נוספים</label>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input name="Is_Paid_new" type="checkbox"  <?php if ($data->Is_Paid == 1) {
-    echo "checked";
-} ?> value="1">האם שולם
+                                                        <input name="Is_Paid_new" type="checkbox"  <?php
+                                                        if ($data->Is_Paid == 1) {
+                                                            echo "checked";
+                                                        }
+                                                        ?> value="1">האם שולם
                                                     </label>
                                                 </div>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input name="Is_Delivered_new" <?php if ($data->Is_Delivered == 1) {
-    echo "checked";
-} ?> type="checkbox" value="1">האם  נשלח
+                                                        <input name="Is_Delivered_new" <?php
+                                                        if ($data->Is_Delivered == 1) {
+                                                            echo "checked";
+                                                        }
+                                                        ?> type="checkbox" value="1">האם  נשלח
                                                     </label>
                                                 </div>
                                             </div>
@@ -209,6 +207,9 @@ $data = !empty($orderId) ? $manager->GetOrder($orderId) : "";
                                     </div>
                                     <!-- /.col-lg-6 (nested) -->
                                 </div>
+                                <h3>
+                                    <a href="orderdetails.php?orderid=<?php echo $data->OrderId; ?>">חזרה להזמנה</a>
+                                </h3>
                                 <!-- /.row (nested) -->
                             </div>
                             <!-- /.panel-body -->
